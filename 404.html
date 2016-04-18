@@ -101,7 +101,7 @@
     fancybox: true,
     motion: true,
     duoshuo: {
-      userId: bc,
+      userId: 0,
       author: '博主'
     }
   };
@@ -227,6 +227,10 @@
           
   <div class="comments" id="comments">
     
+      <div class="ds-thread" data-thread-key="404.html"
+           data-title="" data-url="http://yoursite.com/404.html">
+      </div>
+    
   </div>
 
 
@@ -255,7 +259,7 @@
                src="/images/avatar.jpg"
                alt="bc" />
           <p class="site-author-name" itemprop="name">bc</p>
-          <p class="site-description motion-element" itemprop="description"></p>
+          <p class="site-description motion-element" itemprop="description">bc</p>
         </div>
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
@@ -398,9 +402,28 @@
 
   
 
+  
+    
+  
 
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"bc"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
 
   
+    
+  
+
+
 
 
 
