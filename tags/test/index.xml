@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Test on Hu Yi Wei</title>
+    <link>http://mygb.github.io/tags/test/</link>
+    <description>Recent content in Test on Hu Yi Wei</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <copyright>©2015-2016 huyw All rights reserved.</copyright>
+    <lastBuildDate>Fri, 19 May 2017 00:06:04 +0800</lastBuildDate>
+    
+	<atom:link href="http://mygb.github.io/tags/test/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>first</title>
+      <link>http://mygb.github.io/post/first/</link>
+      <pubDate>Fri, 19 May 2017 00:06:04 +0800</pubDate>
+      
+      <guid>http://mygb.github.io/post/first/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>
