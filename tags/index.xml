@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tags on Hu Yi Wei</title>
-    <link>https://mygb.github.io/tags/</link>
+    <link>http://mygb.github.io/tags/</link>
     <description>Recent content in Tags on Hu Yi Wei</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
     <copyright>©2015-2016 huyw All rights reserved.</copyright>
     
-	<atom:link href="https://mygb.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="http://mygb.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Test</title>
-      <link>https://mygb.github.io/tags/test/</link>
+      <link>http://mygb.github.io/tags/test/</link>
       <pubDate>Fri, 19 May 2017 00:06:04 +0800</pubDate>
       
-      <guid>https://mygb.github.io/tags/test/</guid>
+      <guid>http://mygb.github.io/tags/test/</guid>
       <description></description>
     </item>
     

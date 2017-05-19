@@ -2,34 +2,34 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://mygb.github.io/post/first/</loc>
+    <loc>http://mygb.github.io/post/first/</loc>
     <lastmod>2017-05-19T00:06:04+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://mygb.github.io/categories/</loc>
+    <loc>http://mygb.github.io/categories/</loc>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://mygb.github.io/</loc>
-    <lastmod>2017-05-19T00:06:04+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://mygb.github.io/post/</loc>
+    <loc>http://mygb.github.io/</loc>
     <lastmod>2017-05-19T00:06:04+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://mygb.github.io/tags/</loc>
+    <loc>http://mygb.github.io/post/</loc>
+    <lastmod>2017-05-19T00:06:04+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://mygb.github.io/tags/test/</loc>
+    <loc>http://mygb.github.io/tags/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://mygb.github.io/tags/test/</loc>
     <lastmod>2017-05-19T00:06:04+08:00</lastmod>
     <priority>0</priority>
   </url>

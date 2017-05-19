@@ -2,13 +2,13 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Categories on Hu Yi Wei</title>
-    <link>https://mygb.github.io/categories/</link>
+    <link>http://mygb.github.io/categories/</link>
     <description>Recent content in Categories on Hu Yi Wei</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
     <copyright>©2015-2016 huyw All rights reserved.</copyright>
     
-	<atom:link href="https://mygb.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="http://mygb.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
     
     
   </channel>
