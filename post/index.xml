@@ -32,5 +32,24 @@ TIME_ZONE = &#39;Asia/Shanghai&#39;
 （三） 生成表 (Hello world阶段可跳过这一步)</description>
     </item>
     
+    <item>
+      <title>shadowsocks安装配置过程记录</title>
+      <link>http://mygb.github.io/post/shadowsocks%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE%E8%BF%87%E7%A8%8B%E8%AE%B0%E5%BD%95/</link>
+      <pubDate>Sun, 20 Jul 2014 16:55:58 +0800</pubDate>
+      
+      <guid>http://mygb.github.io/post/shadowsocks%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE%E8%BF%87%E7%A8%8B%E8%AE%B0%E5%BD%95/</guid>
+      <description>由于某些不可描述的原因，在我们当前所处的网络环境下，想要自由畅通的访问国外的网络资源并不十分轻松，因此在这里记录一下搭建一个可以自由访问网络的VPN的主要过程。
+我们通过Shadowsocks来搭建一个自由的VPN，它分为服务端和客户端。
+(一) 服务端的安装和配置 (1) 安装Shadowsocks的服务端(Centos) #1.安装Python yum install python-setuptools #2.安装pip easy_install pip #3.安装shadowsocks服务端软件 pip install shadowsocks  (2) 更改Shadowsocks的配置文件 在 /etc目录下创建shadowsocks.json 文件
+cd /etc/ vi shadowsocks.json  在shadowsocks.json文件中输入下面内容并保存:
+&amp;quot;server&amp;quot;:&amp;quot;0.0.0.0&amp;quot;, &amp;quot;server_port&amp;quot;:443, &amp;quot;local_port&amp;quot;:1080, &amp;quot;password&amp;quot;:&amp;quot;password&amp;quot;, &amp;quot;timeout&amp;quot;:600, &amp;quot;method&amp;quot;:&amp;quot;aes-256-cfb&amp;quot;  现在可以通过下面的命令启动或者停止shadowsocks了:
+service supervisord start service supervisord stop  (3) 把Shadowsocks加入到开机启动项中 通过把Shadowsocks加入到开机启动项之后，可以在服务器每次启动或者重启之后不用手动启动shadowsocks，编辑rc.local文件:
+vi /etc/rc.local  在r.local文件中加入下面启动命令并保存:
+service supervisord start  重启服务器
+reboot  至此，服务端的搭建和配置已经完成。
+(二) Shadowsocks客户端的配置 各个平台客户端的下载地址：Click Me.
+以Windwos系统为例，运行Shadowsocks.exe，编辑服务器，并正确填入之前在服务端所做的配置：服务器地址，端口号，密码和加密方式等等，然后点击保存就可以了。如果不出意外，打开日志窗口就能看到连接服务器成功的信息，这里不再做过多的赘述。</description>
+    </item>
+    
   </channel>
 </rss>
