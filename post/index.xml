@@ -42,7 +42,7 @@ TIME_ZONE = &#39;Asia/Shanghai&#39;
 我们通过Shadowsocks来搭建一个自由的VPN，它分为服务端和客户端。
 (一) 服务端的安装和配置 (1) 安装Shadowsocks的服务端(Centos) #1.安装Python yum install python-setuptools #2.安装pip easy_install pip #3.安装shadowsocks服务端软件 pip install shadowsocks  (2) 更改Shadowsocks的配置文件 在 /etc目录下创建shadowsocks.json 文件
 cd /etc/ vi shadowsocks.json  在shadowsocks.json文件中输入下面内容并保存:
-&amp;quot;server&amp;quot;:&amp;quot;0.0.0.0&amp;quot;, &amp;quot;server_port&amp;quot;:443, &amp;quot;local_port&amp;quot;:1080, &amp;quot;password&amp;quot;:&amp;quot;password&amp;quot;, &amp;quot;timeout&amp;quot;:600, &amp;quot;method&amp;quot;:&amp;quot;aes-256-cfb&amp;quot;  现在可以通过下面的命令启动或者停止shadowsocks了:
+{ &amp;quot;server&amp;quot;:&amp;quot;0.0.0.0&amp;quot;, &amp;quot;server_port&amp;quot;:443, &amp;quot;local_port&amp;quot;:1080, &amp;quot;password&amp;quot;:&amp;quot;password&amp;quot;, &amp;quot;timeout&amp;quot;:600, &amp;quot;method&amp;quot;:&amp;quot;aes-256-cfb&amp;quot; }  现在可以通过下面的命令启动或者停止shadowsocks了:
 service supervisord start service supervisord stop  (3) 把Shadowsocks加入到开机启动项中 通过把Shadowsocks加入到开机启动项之后，可以在服务器每次启动或者重启之后不用手动启动shadowsocks，编辑rc.local文件:
 vi /etc/rc.local  在r.local文件中加入下面启动命令并保存:
 service supervisord start  重启服务器
