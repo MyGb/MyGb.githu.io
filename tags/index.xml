@@ -5,10 +5,20 @@
     <link>http://mygb.github.io/tags/</link>
     <description>Recent content in Tags on 记录,思考</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>zh-CN</language>
+    <language>zh_CN</language>
+    <lastBuildDate>Sun, 05 Mar 2017 13:31:09 +0800</lastBuildDate>
     
 	<atom:link href="http://mygb.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Python</title>
+      <link>http://mygb.github.io/tags/python/</link>
+      <pubDate>Sun, 05 Mar 2017 13:31:09 +0800</pubDate>
+      
+      <guid>http://mygb.github.io/tags/python/</guid>
+      <description></description>
+    </item>
     
   </channel>
 </rss>
