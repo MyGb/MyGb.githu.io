@@ -33,6 +33,153 @@ TIME_ZONE = &#39;Asia/Shanghai&#39;
     </item>
     
     <item>
+      <title>SpringMVC结合Ajax上传文件</title>
+      <link>http://mygb.github.io/post/springmvc%E7%BB%93%E5%90%88ajax%E4%B8%8A%E4%BC%A0%E6%96%87%E4%BB%B6/</link>
+      <pubDate>Sun, 26 Jul 2015 15:31:06 +0800</pubDate>
+      
+      <guid>http://mygb.github.io/post/springmvc%E7%BB%93%E5%90%88ajax%E4%B8%8A%E4%BC%A0%E6%96%87%E4%BB%B6/</guid>
+      <description>在使用Ajax提交表单的时候可能会遇到上传文件的情况，可以使用ajaxFileUpload这个JQuery插件来搞定文件的上传。
+HTML：
+&amp;lt;input type=&amp;quot;file&amp;quot; id=&amp;quot;file&amp;quot; name=&amp;quot;file&amp;quot; class=&amp;quot;form-control&amp;quot; onchange=&amp;quot;preImg(this.id,&#39;imgPre&#39;);&amp;quot;/&amp;gt; &amp;lt;input type=&amp;quot;button&amp;quot; value=&amp;quot;确认上传&amp;quot; onclick=&amp;quot;ajaxFileUpload()&amp;quot;/&amp;gt;  JS：
+/* 图片上传 */ function ajaxFileUpload() { // 执行上传文件操作的函数 $.ajaxFileUpload({ url : path + &#39;/admin/item/fileUpload&#39;, secureuri : false, // 是否启用安全提交,默认为false fileElementId : &#39;file&#39;, // 文件选择框的id属性 dataType : &#39;text&#39;, // 服务器返回的格式,可以是json或xml等 success : function(data, status) { // 服务器响应成功时的处理函数 if (data.code == 0) { $(&amp;quot;#fileInfo&amp;quot;).html(&amp;quot;上传成功.&amp;quot;); } else { $(&amp;quot;#fileInfo&amp;quot;).html(&amp;quot;上传失败.&amp;quot;); } }, error : function(data, status, e) { $(&amp;quot;#fileInfo&amp;quot;).html(&amp;quot;上传失败，请重试.&amp;quot;); } }); }  后台保存：</description>
+    </item>
+    
+    <item>
+      <title>自动提示插件magicSuggest的使用</title>
+      <link>http://mygb.github.io/post/%E8%87%AA%E5%8A%A8%E6%8F%90%E7%A4%BA%E6%8F%92%E4%BB%B6magicsuggest%E7%9A%84%E4%BD%BF%E7%94%A8/</link>
+      <pubDate>Wed, 03 Jun 2015 15:36:46 +0800</pubDate>
+      
+      <guid>http://mygb.github.io/post/%E8%87%AA%E5%8A%A8%E6%8F%90%E7%A4%BA%E6%8F%92%E4%BB%B6magicsuggest%E7%9A%84%E4%BD%BF%E7%94%A8/</guid>
+      <description>  magicSuggest是一个自动提示插件且支持多选，下面记录了具体的使用过程(bootstrap)：
+ 1. 首先在页面中引入magicSuggest的样式文件和js文件(需要bootstrap和JQuery库)： &amp;lt;link href=&amp;quot;/assets/css/magicsuggest-min.css&amp;quot; rel=&amp;quot;stylesheet&amp;quot;&amp;gt; &amp;lt;script src=&amp;quot;/assets/js/magicsuggest-min.js&amp;quot;&amp;gt;&amp;lt;/script&amp;gt;  2. 页面中添加一个div： &amp;lt;div id=&amp;quot;ms1&amp;quot; class=&amp;quot;form-control&amp;quot; required&amp;gt;&amp;lt;/div&amp;gt;  3. 再为magicSuggest初始化： var ms1 = $(&#39;#ms1&#39;).magicSuggest({ value:[&#39;A&#39;], placeholder:&#39;请选择&#39;, data:&#39;/message/find&#39;, queryParam:&#39;str&#39;, });  解释一下：
+（1）value是出现在提示框中的值
+（2）placeholder是提示，就是显示在文本框中的提示内容，类似于很多网页中的“请在此框中输入xx”
+（3）data是数据源，上面写的数据源是去请求一个url，这个url返回的是json数据，如果不用根据输入内容去动态获取，写死就行了，就像value那样
+（4）queryParam是插件根据输入的内容，然后把这个内容传到后台的名称。假如在提示框中输入了a，queryParam是str，数据源是一个url请求(data:&#39;/message/find&#39;)，那么插件会自动把这个参数传递到后台（处不处理是自己的事），完整的链接是/message/find?str=a，后台可以这样获取：request.getParameter(&amp;quot;str&amp;quot;);。就是这样。
+4. 如果要获取提示框中的值： $(ms1).on( &#39;selectionchange&#39;, function(e, cb, s){ var str = cb.getValue(); alert(&#39;提示框中的值为：&#39;+str); });  上面的方法是在提示列表中选了一项，然后提示框中的值发生改变了触发的；如果获取到提示框中有多个值，会用,(逗号)分开。
+5. 更多有关MagicSuggest属性请参考官方文档 </description>
+    </item>
+    
+    <item>
+      <title>JQuery.lazyload的使用</title>
+      <link>http://mygb.github.io/post/jquery.lazyload%E7%9A%84%E4%BD%BF%E7%94%A8/</link>
+      <pubDate>Thu, 30 Apr 2015 15:34:03 +0800</pubDate>
+      
+      <guid>http://mygb.github.io/post/jquery.lazyload%E7%9A%84%E4%BD%BF%E7%94%A8/</guid>
+      <description>JQuery.lazyload是一款用于图片延迟加载的插件；使用方法如下：
+①引入jquery.lazyload.min.js文件：
+&amp;lt;script src=&amp;quot;jquery.lazyload.min.js&amp;quot; type=&amp;quot;text/javascript&amp;quot;&amp;gt;&amp;lt;/script&amp;gt;  ②使用jquery.lazyload插件：在需要延迟加载图片的img标签中这样写
+&amp;lt;img class=&amp;quot;lazy&amp;quot; data-original=&amp;quot;nor.gif&amp;quot; src=&amp;quot;lazy.gif&amp;quot; /&amp;gt;  其中class属性根据情况自己定义；
+data-original属性是要加载的图片的全路径，此属性中的值可根据情况用javascript来改变,如在页面加载的时候发起Ajax请求后得到图片地址，再把获取到的图片地址用javascript的方式设置给该属性；
+src是还没加载出图片的时候预设显示的图片，也可不做设置，但最好指定img的宽高，以免排版布局显示错乱。</description>
+    </item>
+    
+    <item>
+      <title>git常使用的命令</title>
+      <link>http://mygb.github.io/post/git%E5%B8%B8%E4%BD%BF%E7%94%A8%E7%9A%84%E5%91%BD%E4%BB%A4/</link>
+      <pubDate>Mon, 09 Mar 2015 16:31:31 +0800</pubDate>
+      
+      <guid>http://mygb.github.io/post/git%E5%B8%B8%E4%BD%BF%E7%94%A8%E7%9A%84%E5%91%BD%E4%BB%A4/</guid>
+      <description>从远程下载项目到本地：
+ git clone 项目地址  初始化一个本地的git仓库：
+ git init  推送本地项目到一个新的远程仓库：
+ git remote add origin 项目地址 (如果“origin”不写默认为“origin”)  查看本地更改：
+ git status  查看本次具体的修改内容：
+ git diff 或 git diff 具体文件的路径  添加改动到暂存区：
+ git add . 或者 git add -A 或者 git add 文件路径  把暂存区的改动提交到本地仓库：
+ git commit -m &amp;quot;本次提交说明&amp;quot;  把本地仓库的改动推送到远程仓库：
+ git push 或者 git push origin 分支名  从远程仓库更新代码到本地仓库：
+ git pull 或者 git pull origin 分支名  查看分支：</description>
+    </item>
+    
+    <item>
+      <title>使用Spring自带的定时执行任务工具执行任务</title>
+      <link>http://mygb.github.io/post/%E4%BD%BF%E7%94%A8spring%E8%87%AA%E5%B8%A6%E7%9A%84%E5%AE%9A%E6%97%B6%E6%89%A7%E8%A1%8C%E4%BB%BB%E5%8A%A1%E5%B7%A5%E5%85%B7%E6%89%A7%E8%A1%8C%E4%BB%BB%E5%8A%A1/</link>
+      <pubDate>Sat, 10 Jan 2015 15:38:39 +0800</pubDate>
+      
+      <guid>http://mygb.github.io/post/%E4%BD%BF%E7%94%A8spring%E8%87%AA%E5%B8%A6%E7%9A%84%E5%AE%9A%E6%97%B6%E6%89%A7%E8%A1%8C%E4%BB%BB%E5%8A%A1%E5%B7%A5%E5%85%B7%E6%89%A7%E8%A1%8C%E4%BB%BB%E5%8A%A1/</guid>
+      <description>首先写一个任务类： @Component(&amp;quot;taskJob&amp;quot;) public class DeleteTableRecord { @Scheduled(cron = &amp;quot;0 0 3 * * ?&amp;quot;) public void job() { System.out.println(&amp;quot;正在执行任务....&amp;quot;); //要执行的任务 System.out.println(&amp;quot;任务执行完成.&amp;quot;); } }  @Scheduled(cron = &amp;quot;0 0 3 * * ?&amp;quot;) #表示在每天凌晨三点执行任务 @Scheduled(cron = &amp;quot;0 15 3 * * ?&amp;quot;) #表示每天凌晨三点十五分执行任务  在Spring配置文件中加入如下配置: &amp;lt;beans xmlns=&amp;quot;http://www.springframework.org/schema/beans&amp;quot; xmlns:xsi=&amp;quot;http://www.w3.org/2001/XMLSchema-instance&amp;quot; xmlns:aop=&amp;quot;http://www.springframework.org/schema/aop&amp;quot; xmlns:tx=&amp;quot;http://www.springframework.org/schema/tx&amp;quot; xmlns:jdbc=&amp;quot;http://www.springframework.org/schema/jdbc&amp;quot; xmlns:context=&amp;quot;http://www.springframework.org/schema/context&amp;quot; xmlns:task=&amp;quot;http://www.springframework.org/schema/task&amp;quot; xsi:schemaLocation=&amp;quot;http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-3.0.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.0.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.0.xsd http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task-3.0.xsd&amp;quot;&amp;gt; &amp;lt;context:annotation-config /&amp;gt; &amp;lt;!-- 扫描Task所在包--&amp;gt; &amp;lt;context:component-scan base-package=&amp;quot;com.</description>
+    </item>
+    
+    <item>
+      <title>freemarker部分使用记录</title>
+      <link>http://mygb.github.io/post/freemarker%E9%83%A8%E5%88%86%E4%BD%BF%E7%94%A8%E8%AE%B0%E5%BD%95/</link>
+      <pubDate>Fri, 10 Oct 2014 15:28:29 +0800</pubDate>
+      
+      <guid>http://mygb.github.io/post/freemarker%E9%83%A8%E5%88%86%E4%BD%BF%E7%94%A8%E8%AE%B0%E5%BD%95/</guid>
+      <description> freemarker中获取当前日期并比较  类似freemarker的模板引擎是在服务端渲染完成之后再返回的。因此可以在页面的任何地方使用freemarker的标签去取值，包括在页面的Javascript脚本中（不是单独的js文件）去使用。
+ 在freemarker中获取当前日期：
+${.now}  获取当前日期并比较：
+&amp;lt;#if holdDate?date gt .now?date&amp;gt; ......... &amp;lt;/#if&amp;gt;  另外，在自己使用的时候，遇到不能做大于等于(&amp;gt;=)或小于等于(&amp;lt;=)这种比较，如果要做等于(==)比较的话，可以这样：
+&amp;lt;#if (content.holdDate)?string(&amp;quot;yyyyMMdd&amp;quot;) == .now?string(&amp;quot;yyyyMMdd&amp;quot;)&amp;gt; ...... &amp;lt;/#if&amp;gt;  ?string(&amp;quot;yyyyMMdd&amp;quot;)的作用是把日期数据转成对应格式(yyyyMMdd)的字符串。
+ftl文件中写js代码，获取map值 ftl文件中循环获取map中的值，是这样子：
+&amp;lt;#list mode?keys as itemKey&amp;gt; mode[itemKey]&amp;lt;#--取mode中键为itemkey的值--&amp;gt; &amp;lt;/#list&amp;gt;  在ftl文件中，需要取map中的数据进行显示，一般都是以map[key]的形式直接获取，但要是在ftl中的js代码中直接这样是不行的，需要引入json.ftl文件，然后借助@json.stringify这个标签才行。
+一个具体的例子就是：
+&amp;lt;script type=&amp;quot;text/javascript&amp;quot;&amp;gt; var obj = &amp;lt;@json.stringify map[key] /&amp;gt; &amp;lt;/script&amp;gt;  当然，别忘了前面提到的引入json.ftl文件，在页面开头引入：
+&amp;lt;#import &amp;quot;/json.ftl&amp;quot; as json&amp;gt;  </description>
+    </item>
+    
+    <item>
+      <title>前台开发杂记</title>
+      <link>http://mygb.github.io/post/%E5%89%8D%E5%8F%B0%E5%BC%80%E5%8F%91%E6%9D%82%E8%AE%B0/</link>
+      <pubDate>Fri, 03 Oct 2014 15:24:33 +0800</pubDate>
+      
+      <guid>http://mygb.github.io/post/%E5%89%8D%E5%8F%B0%E5%BC%80%E5%8F%91%E6%9D%82%E8%AE%B0/</guid>
+      <description>ckeditor插件的使用方法和一些需要注意的地方。 &amp;lt;html&amp;gt; &amp;lt;head&amp;gt; &amp;lt;title&amp;gt;Test&amp;lt;/title&amp;gt;&amp;lt;!--引入ckeditor核心文件,src后面的路径要对,这里的页面和ckeditor文件夹在同一目录下--&amp;gt; &amp;lt;script type=&amp;quot;text/javascript&amp;quot;src=&amp;quot;ckeditor/ckeditor.js&amp;quot;&amp;gt;&amp;lt;/script&amp;gt; &amp;lt;script type=&amp;quot;text/javascript&amp;quot;&amp;gt; window.onload = function(){ CKEDITOR.replace( &#39;editor01&#39; ); }; &amp;lt;/script&amp;gt; &amp;lt;/head&amp;gt; &amp;lt;body&amp;gt; &amp;lt;textarea id=&amp;quot;TextArea1&amp;quot; cols=&amp;quot;20&amp;quot; rows=&amp;quot;2&amp;quot; class=&amp;quot;ckeditor&amp;quot;&amp;gt;&amp;lt;/textarea&amp;gt; &amp;lt;/body&amp;gt; &amp;lt;/html&amp;gt;  在jsp页面中遇到的问题:
+1、 用MyEclipse生成的jsp文件,如果
+&amp;lt;base href=&amp;quot;&amp;lt;%=basePath%&amp;gt;&amp;quot;&amp;gt;  这行代码放在了
+&amp;lt;script type=&amp;quot;text/javascript&amp;quot;&amp;gt;....&amp;lt;/script&amp;gt;  之前,那么插件无效,所以平时开发中应该把基础的js文件或配置放在前面。
+2、如果有全局样式的话，可能会影响插件的显示,比如在全局样式中写:span{display:none;}会影响插件的正常显示和工作。
+问题:使用原生Ajax向后台传值. 解决:
+var tempStr = document.getElementById(&amp;quot;name&amp;quot;).value; var url = &amp;quot;servlet/AjaxTest?name=&amp;quot;+tempStr; xmlHttp.open(&amp;quot;POST&amp;quot;,url,true);  后台servlet获取参数:
+String name = request.getParameter(&amp;quot;name&amp;quot;);  使用Jquery-Ajax改变Select标签进行联动 页面存在着一组select标签，它们的id分别是clientType和type。type随着clientType的选择而改变。
+栗子：
+$(&#39;#clientType&#39;).change(function(){ var val = $(&#39;#clientType option:selected&#39;).val();//获取当前选中的值 //根据不同情况请求不同数据 if(val == 1){ $(&#39;#type&#39;).</description>
+    </item>
+    
+    <item>
+      <title>SpringMVC结合freemarker回显数据的实现</title>
+      <link>http://mygb.github.io/post/springmvc%E7%BB%93%E5%90%88freemarker%E5%9B%9E%E6%98%BE%E6%95%B0%E6%8D%AE%E7%9A%84%E5%AE%9E%E7%8E%B0/</link>
+      <pubDate>Mon, 25 Aug 2014 15:12:32 +0800</pubDate>
+      
+      <guid>http://mygb.github.io/post/springmvc%E7%BB%93%E5%90%88freemarker%E5%9B%9E%E6%98%BE%E6%95%B0%E6%8D%AE%E7%9A%84%E5%AE%9E%E7%8E%B0/</guid>
+      <description>回显数据经常可以在修改功能中看到，而SpringMVC结合freemarker会和其他的回显做法有点不同，看Controller部分：
+@RequestMapping(value = &amp;quot;/update&amp;quot;, method = RequestMethod.GET) public ModelAndView update(@RequestParam(&amp;quot;id&amp;quot;) long userId, @ModelAttribute(&amp;quot;a&amp;quot;) ModelMap a) { return new ModelAndView(&amp;quot;/update&amp;quot;, &amp;quot;a&amp;quot;, userService.find(userId)); }  没错，Controller中方法的返回值类型是ModelAndView这个了，返回的时候也要借助它。ok，这是Controller部分。
+根据上面那样写的话，那么ftl页面应该像下面这样：
+&amp;lt;#ftl strip_whitespace=true&amp;gt; &amp;lt;#import &amp;quot;/spring.ftl&amp;quot; as spring /&amp;gt; &amp;lt;!DOCTYPE html&amp;gt; &amp;lt;html&amp;gt; &amp;lt;head&amp;gt;&amp;lt;title&amp;gt;修改user&amp;lt;/title&amp;gt;&amp;lt;/head&amp;gt; &amp;lt;body&amp;gt; &amp;lt;@spring.bind &amp;quot;a&amp;quot;/&amp;gt; &amp;lt;form action=&amp;quot;/updateSave&amp;quot; name=&amp;quot;at&amp;quot; method=&amp;quot;POST&amp;quot;&amp;gt; &amp;lt;@spring.formHiddenInput &amp;quot;a.userId&amp;quot; /&amp;gt; name:&amp;lt;@spring.formInput &amp;quot;a.name&amp;quot; /&amp;gt;&amp;lt;br/&amp;gt;&amp;lt;br/&amp;gt; age:&amp;lt;@spring.formInput &amp;quot;a.age&amp;quot; /&amp;gt;&amp;lt;br/&amp;gt;&amp;lt;br/&amp;gt; sex:&amp;lt;@spring.formInput &amp;quot;a.sex&amp;quot; /&amp;gt;&amp;lt;br/&amp;gt;&amp;lt;br/&amp;gt; &amp;lt;button type=&amp;quot;submit&amp;quot;&amp;gt;确定&amp;lt;/button&amp;gt; &amp;lt;button type=&amp;quot;reset&amp;quot;&amp;gt;重置&amp;lt;/button&amp;gt; &amp;lt;/form&amp;gt; &amp;lt;/body&amp;gt; &amp;lt;/html&amp;gt;  这是一个完整freemarker模板的ftl文档，就像上面那样，SpringMVC结合freemarker实现数据回显，需要借助Spring提供的标签，先导入spring的标签库:
+&amp;lt;#ftl strip_whitespace=true&amp;gt; &amp;lt;#import &amp;quot;/spring.ftl&amp;quot; as spring /&amp;gt;  好了，标签库已经导入进来了，现在要实现数据回显首先进行绑定：</description>
+    </item>
+    
+    <item>
+      <title>SpringMVC结合freemarker页面传值到后台，后台获取页面传值</title>
+      <link>http://mygb.github.io/post/springmvc%E7%BB%93%E5%90%88freemarker%E9%A1%B5%E9%9D%A2%E4%BC%A0%E5%80%BC%E5%88%B0%E5%90%8E%E5%8F%B0%E5%90%8E%E5%8F%B0%E8%8E%B7%E5%8F%96%E9%A1%B5%E9%9D%A2%E4%BC%A0%E5%80%BC/</link>
+      <pubDate>Thu, 14 Aug 2014 15:18:19 +0800</pubDate>
+      
+      <guid>http://mygb.github.io/post/springmvc%E7%BB%93%E5%90%88freemarker%E9%A1%B5%E9%9D%A2%E4%BC%A0%E5%80%BC%E5%88%B0%E5%90%8E%E5%8F%B0%E5%90%8E%E5%8F%B0%E8%8E%B7%E5%8F%96%E9%A1%B5%E9%9D%A2%E4%BC%A0%E5%80%BC/</guid>
+      <description>既然是页面传值到后台，就先从页面开始吧，关键代码如下：
+&amp;lt;form action=&amp;quot;/login&amp;quot; name=&amp;quot;user&amp;quot; method=&amp;quot;POST&amp;quot;&amp;gt; name:&amp;lt;input name=&amp;quot;name&amp;quot; type=&amp;quot;text&amp;quot; placeholder=&amp;quot;用户名&amp;quot;&amp;gt;&amp;lt;br/&amp;gt; pwd:&amp;lt;input name=&amp;quot;pwd&amp;quot; type=&amp;quot;password&amp;quot; placeholder=&amp;quot;用户名&amp;quot;&amp;gt;&amp;lt;br/&amp;gt; &amp;lt;/form&amp;gt;  后台Controller对应实现：
+@RequestMapping(value = &amp;quot;/login&amp;quot;, method = RequestMethod.POST) public String login(@ModelAttribute(&amp;quot;user&amp;quot;) User user, HttpSession session) { String name = user.getName(); String pwd = user.getPwd(); boolean isSuccess = userService.findUserByNameAndPwd(name,pwd); if(isSuccess){ return &amp;quot;redirect:/success&amp;quot;; } return &amp;quot;/login&amp;quot;; }  是否有注意，Controller方法参数中的user在方法体中是直接拿来使用的，但这个user的值是从哪里来的呢？其实就是从页面获取到的；页面form表单的名字叫user，然后这个form表单是请求的login方法。要注意的是，Controller方法参数中的user必须给它加上@ModelAttribute(&amp;quot;user&amp;quot;)这样的一个注解。看下面：
+后台： public String login(@ModelAttribute(&amp;quot;user&amp;quot;) User user, HttpSession session) {...} 页面： &amp;lt;form action=&amp;quot;/login&amp;quot; name=&amp;quot;user&amp;quot; method=&amp;quot;POST&amp;quot;&amp;gt;...&amp;lt;/form&amp;gt;  这样一对比，是不是清楚了。
+这是传递一个实例，但如果只传递一个或多个零散的参数呢？看下面：
+&amp;lt;a href=&amp;quot;/manager/delete?id=1&amp;quot;&amp;gt;删除&amp;lt;/a&amp;gt;  怎么在Controller中获取a标签中所传递的参数呢？很简单：</description>
+    </item>
+    
+    <item>
+      <title>SpringMVC结合freemarker传值到页面并显示</title>
+      <link>http://mygb.github.io/post/springmvc%E7%BB%93%E5%90%88freemarker%E4%BC%A0%E5%80%BC%E5%88%B0%E9%A1%B5%E9%9D%A2%E5%B9%B6%E6%98%BE%E7%A4%BA/</link>
+      <pubDate>Wed, 13 Aug 2014 15:15:45 +0800</pubDate>
+      
+      <guid>http://mygb.github.io/post/springmvc%E7%BB%93%E5%90%88freemarker%E4%BC%A0%E5%80%BC%E5%88%B0%E9%A1%B5%E9%9D%A2%E5%B9%B6%E6%98%BE%E7%A4%BA/</guid>
+      <description>Controller要传值到页面上,可以使用@ModelAttribute这个注解来实现：
+@RequestMapping(value = &amp;quot;/&amp;quot;, method = RequestMethod.GET) public String list(@ModelAttribute(&amp;quot;a&amp;quot;) ModelMap mm) { List&amp;lt;User&amp;gt; users= userService.getAll(); if (Utils.isEmpty(attachments)) { mm.addAttribute(&amp;quot;users&amp;quot;, &amp;quot;&amp;quot;); } else { mm.addAttribute(&amp;quot;users&amp;quot;, users); } return &amp;quot;/index&amp;quot;; }  这样就可以把查询出来的users这个List传递到页面了。Controller里边就是这样写的。
+那么问题来了，既然已经传递到index页面了，那index这个页面怎么取users呢，看下面:
+&amp;lt;#if a[&#39;users&#39;]??&amp;gt; &amp;lt;span&amp;gt;暂无数据&amp;lt;/span&amp;gt; &amp;lt;#else&amp;gt; &amp;lt;table&amp;gt; &amp;lt;tr&amp;gt; &amp;lt;th&amp;gt;姓名&amp;lt;/th&amp;gt; &amp;lt;th&amp;gt;年龄&amp;lt;/th&amp;gt; &amp;lt;th&amp;gt;性别&amp;lt;/th&amp;gt; &amp;lt;/tr&amp;gt; &amp;lt;#list a[&#39;users&#39;] as user&amp;gt; &amp;lt;tr&amp;gt; &amp;lt;td&amp;gt;${user.name}&amp;lt;/td&amp;gt; &amp;lt;td&amp;gt;${user.age}&amp;lt;/td&amp;gt; &amp;lt;td&amp;gt;${user.sex}&amp;lt;/td&amp;gt; &amp;lt;/tr&amp;gt; &amp;lt;/#list&amp;gt; &amp;lt;/table&amp;gt; &amp;lt;/#if&amp;gt;  这里用的是freemarker中的标签语法，要是用其他标签也是一样的，都是遍历取值这么一个过程。 需要说明的是： Controller方法参数中的
+@ModelAttribute(&amp;quot;info&amp;quot;) ModelMap mm  Controller方法代码中的
+mm.addAttribute(&amp;quot;users&amp;quot;,users)  index页面中的
+&amp;lt;#list info[&#39;users&#39;] as user&amp;gt;  info为Map对象,users为key,所以取users的时候用info[&#39;users&#39;]</description>
+    </item>
+    
+    <item>
       <title>shadowsocks安装配置过程记录</title>
       <link>http://mygb.github.io/post/shadowsocks%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE%E8%BF%87%E7%A8%8B%E8%AE%B0%E5%BD%95/</link>
       <pubDate>Sun, 20 Jul 2014 16:55:58 +0800</pubDate>
@@ -49,6 +196,31 @@ service supervisord start  重启服务器
 reboot  至此，服务端的搭建和配置已经完成。
 (二) Shadowsocks客户端的配置 各个平台客户端的下载地址：Click Me.
 以Windwos系统为例，运行Shadowsocks.exe，编辑服务器，并正确填入之前在服务端所做的配置：服务器地址，端口号，密码和加密方式等等，然后点击保存就可以了。如果不出意外，打开日志窗口就能看到连接服务器成功的信息，这里不再做过多的赘述。</description>
+    </item>
+    
+    <item>
+      <title>后台开发杂记</title>
+      <link>http://mygb.github.io/post/%E5%90%8E%E5%8F%B0%E5%BC%80%E5%8F%91%E6%9D%82%E8%AE%B0/</link>
+      <pubDate>Tue, 06 May 2014 15:09:26 +0800</pubDate>
+      
+      <guid>http://mygb.github.io/post/%E5%90%8E%E5%8F%B0%E5%BC%80%E5%8F%91%E6%9D%82%E8%AE%B0/</guid>
+      <description>关于在Eclipse里创建的jsp文件中输入中文存储时报错的问题. 解决方法:
+(1)把jsp文件中的pageEncoding的值改成中文的编码方式,如GBK,GB2312,GB18030.
+(2)在jsp文件页面右击，选preferences，在JSP Files中的Encoding项选Chinese,National Standard.
+使用第二种方式一劳永逸.
+struts2中返回页面到一个iframe中显示的方法 把struts2返回的页面显示到一个页面指定的iframe中，只需在form中指定target的值为需要显示页面的iframe的名字即可.
+&amp;lt;form action=&amp;quot;actionName&amp;quot; target=&amp;quot;你要把页面显示到哪个iframe的名字&amp;quot;&amp;gt; .... &amp;lt;/form&amp;gt;  用SSH实现简单的删除操作时，id传入后台报空的问题。 页面删除链接的代码：
+&amp;lt;a href=&amp;quot;UserinfoAction!delete?id=${s.UId}&amp;quot;&amp;gt;删除&amp;lt;/a&amp;gt;  改正过后的代码：
+&amp;lt;a href=&amp;quot;UserinfoAction!delete?ui.UId=${s.UId}&amp;quot;&amp;gt;删除&amp;lt;/a&amp;gt;  其中UId是dao层实体中的一个属性，对应表中的主键.
+问题描述:id传入action时不能接收，无法创建对象。所以报空，用ui.UId=?解决.
+MyEclipse中建立的jsp文件中&amp;lt;base href=&amp;quot;&amp;lt;%=basePath%&amp;gt;&amp;quot;&amp;gt;可能会带来的问题. &amp;lt;base href=&amp;quot;&amp;lt;%=basePath%&amp;gt;&amp;quot;&amp;gt;  遇到的情况:通过struts2跳转到相应的jsp页面，上面的标签影响了原来jsp页面的样式和js的执行。 解决方法:删除该标签.或是把该标签放在样式和js脚本的后边.
+jsp页面跳转jsp页面时所传递的内容乱码的问题. 遇到的问题:jsp页面跳转到另一jsp页面时所传递的内容乱码.
+解决方法:修改Tomcat的server.xml文件.
+要修改的内容:
+ &amp;lt;Connector port=&amp;quot;8080&amp;quot; protocol=&amp;quot;HTTP/1.1&amp;quot; connectionTimeout=&amp;quot;20000&amp;quot; redirectPort=&amp;quot;8443&amp;quot; /&amp;gt;  修改为:
+ &amp;lt;Connector port=&amp;quot;8080&amp;quot; protocol=&amp;quot;HTTP/1.1&amp;quot; connectionTimeout=&amp;quot;20000&amp;quot; redirectPort=&amp;quot;8443&amp;quot; URIEncoding=&amp;quot;UTF-8&amp;quot; /&amp;gt;  bean的成员变量 bean的成员变量首字母小写！！！长记性&amp;hellip;..
+启动Tomcat时报Caused by: java.lang.ClassNotFoundException: FilterConfig异常 在MyEclipse中导入了一个web项目，没想到启动之后报异常，
+NoClassDefFoundError: LFilterConfig......  解决，右键项目，选Properties，找到MyEclipse下的Targeted Runtimes,在右边的框中选择一个目标运行的服务器，如Apache Tomcat v7.0</description>
     </item>
     
   </channel>
