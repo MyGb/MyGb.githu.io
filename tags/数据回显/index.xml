@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>数据回显 on 记录,思考</title>
+    <link>http://mygb.github.io/tags/%E6%95%B0%E6%8D%AE%E5%9B%9E%E6%98%BE/</link>
+    <description>Recent content in 数据回显 on 记录,思考</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh_CN</language>
+    <lastBuildDate>Mon, 25 Aug 2014 15:12:32 +0800</lastBuildDate>
+    
+	<atom:link href="http://mygb.github.io/tags/%E6%95%B0%E6%8D%AE%E5%9B%9E%E6%98%BE/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>SpringMVC结合freemarker回显数据的实现</title>
+      <link>http://mygb.github.io/post/springmvc%E7%BB%93%E5%90%88freemarker%E5%9B%9E%E6%98%BE%E6%95%B0%E6%8D%AE%E7%9A%84%E5%AE%9E%E7%8E%B0/</link>
+      <pubDate>Mon, 25 Aug 2014 15:12:32 +0800</pubDate>
+      
+      <guid>http://mygb.github.io/post/springmvc%E7%BB%93%E5%90%88freemarker%E5%9B%9E%E6%98%BE%E6%95%B0%E6%8D%AE%E7%9A%84%E5%AE%9E%E7%8E%B0/</guid>
+      <description>回显数据经常可以在修改功能中看到，而SpringMVC结合freemarker会和其他的回显做法有点不同，看Controller部分：
+@RequestMapping(value = &amp;quot;/update&amp;quot;, method = RequestMethod.GET) public ModelAndView update(@RequestParam(&amp;quot;id&amp;quot;) long userId, @ModelAttribute(&amp;quot;a&amp;quot;) ModelMap a) { return new ModelAndView(&amp;quot;/update&amp;quot;, &amp;quot;a&amp;quot;, userService.find(userId)); }  没错，Controller中方法的返回值类型是ModelAndView这个了，返回的时候也要借助它。ok，这是Controller部分。
+根据上面那样写的话，那么ftl页面应该像下面这样：
+&amp;lt;#ftl strip_whitespace=true&amp;gt; &amp;lt;#import &amp;quot;/spring.ftl&amp;quot; as spring /&amp;gt; &amp;lt;!DOCTYPE html&amp;gt; &amp;lt;html&amp;gt; &amp;lt;head&amp;gt;&amp;lt;title&amp;gt;修改user&amp;lt;/title&amp;gt;&amp;lt;/head&amp;gt; &amp;lt;body&amp;gt; &amp;lt;@spring.bind &amp;quot;a&amp;quot;/&amp;gt; &amp;lt;form action=&amp;quot;/updateSave&amp;quot; name=&amp;quot;at&amp;quot; method=&amp;quot;POST&amp;quot;&amp;gt; &amp;lt;@spring.formHiddenInput &amp;quot;a.userId&amp;quot; /&amp;gt; name:&amp;lt;@spring.formInput &amp;quot;a.name&amp;quot; /&amp;gt;&amp;lt;br/&amp;gt;&amp;lt;br/&amp;gt; age:&amp;lt;@spring.formInput &amp;quot;a.age&amp;quot; /&amp;gt;&amp;lt;br/&amp;gt;&amp;lt;br/&amp;gt; sex:&amp;lt;@spring.formInput &amp;quot;a.sex&amp;quot; /&amp;gt;&amp;lt;br/&amp;gt;&amp;lt;br/&amp;gt; &amp;lt;button type=&amp;quot;submit&amp;quot;&amp;gt;确定&amp;lt;/button&amp;gt; &amp;lt;button type=&amp;quot;reset&amp;quot;&amp;gt;重置&amp;lt;/button&amp;gt; &amp;lt;/form&amp;gt; &amp;lt;/body&amp;gt; &amp;lt;/html&amp;gt;  这是一个完整freemarker模板的ftl文档，就像上面那样，SpringMVC结合freemarker实现数据回显，需要借助Spring提供的标签，先导入spring的标签库:
+&amp;lt;#ftl strip_whitespace=true&amp;gt; &amp;lt;#import &amp;quot;/spring.ftl&amp;quot; as spring /&amp;gt;  好了，标签库已经导入进来了，现在要实现数据回显首先进行绑定：</description>
+    </item>
+    
+  </channel>
+</rss>

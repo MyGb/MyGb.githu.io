@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Magicsuggest on 记录,思考</title>
+    <link>http://mygb.github.io/tags/magicsuggest/</link>
+    <description>Recent content in Magicsuggest on 记录,思考</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh_CN</language>
+    <lastBuildDate>Wed, 03 Jun 2015 15:36:46 +0800</lastBuildDate>
+    
+	<atom:link href="http://mygb.github.io/tags/magicsuggest/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>自动提示插件magicSuggest的使用</title>
+      <link>http://mygb.github.io/post/%E8%87%AA%E5%8A%A8%E6%8F%90%E7%A4%BA%E6%8F%92%E4%BB%B6magicsuggest%E7%9A%84%E4%BD%BF%E7%94%A8/</link>
+      <pubDate>Wed, 03 Jun 2015 15:36:46 +0800</pubDate>
+      
+      <guid>http://mygb.github.io/post/%E8%87%AA%E5%8A%A8%E6%8F%90%E7%A4%BA%E6%8F%92%E4%BB%B6magicsuggest%E7%9A%84%E4%BD%BF%E7%94%A8/</guid>
+      <description>  magicSuggest是一个自动提示插件且支持多选，下面记录了具体的使用过程(bootstrap)：
+ 1. 首先在页面中引入magicSuggest的样式文件和js文件(需要bootstrap和JQuery库)： &amp;lt;link href=&amp;quot;/assets/css/magicsuggest-min.css&amp;quot; rel=&amp;quot;stylesheet&amp;quot;&amp;gt; &amp;lt;script src=&amp;quot;/assets/js/magicsuggest-min.js&amp;quot;&amp;gt;&amp;lt;/script&amp;gt;  2. 页面中添加一个div： &amp;lt;div id=&amp;quot;ms1&amp;quot; class=&amp;quot;form-control&amp;quot; required&amp;gt;&amp;lt;/div&amp;gt;  3. 再为magicSuggest初始化： var ms1 = $(&#39;#ms1&#39;).magicSuggest({ value:[&#39;A&#39;], placeholder:&#39;请选择&#39;, data:&#39;/message/find&#39;, queryParam:&#39;str&#39;, });  解释一下：
+（1）value是出现在提示框中的值
+（2）placeholder是提示，就是显示在文本框中的提示内容，类似于很多网页中的“请在此框中输入xx”
+（3）data是数据源，上面写的数据源是去请求一个url，这个url返回的是json数据，如果不用根据输入内容去动态获取，写死就行了，就像value那样
+（4）queryParam是插件根据输入的内容，然后把这个内容传到后台的名称。假如在提示框中输入了a，queryParam是str，数据源是一个url请求(data:&#39;/message/find&#39;)，那么插件会自动把这个参数传递到后台（处不处理是自己的事），完整的链接是/message/find?str=a，后台可以这样获取：request.getParameter(&amp;quot;str&amp;quot;);。就是这样。
+4. 如果要获取提示框中的值： $(ms1).on( &#39;selectionchange&#39;, function(e, cb, s){ var str = cb.getValue(); alert(&#39;提示框中的值为：&#39;+str); });  上面的方法是在提示列表中选了一项，然后提示框中的值发生改变了触发的；如果获取到提示框中有多个值，会用,(逗号)分开。
+5. 更多有关MagicSuggest属性请参考官方文档 </description>
+    </item>
+    
+  </channel>
+</rss>

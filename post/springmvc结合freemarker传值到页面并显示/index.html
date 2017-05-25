@@ -1,0 +1,166 @@
+
+<!DOCTYPE html>
+<html lang="zh_CN">
+<head>
+
+  
+  <meta charset="UTF-8">
+  <title>
+    SpringMVC结合freemarker传值到页面并显示 | 记录,思考
+  </title>
+
+
+  
+  <meta name="viewport" content="width=device-width,user-scalable=no,maximum-scale=1,initial-scale=1">
+
+  
+  <link rel="canonical" href="http://mygb.github.io/post/springmvc%E7%BB%93%E5%90%88freemarker%E4%BC%A0%E5%80%BC%E5%88%B0%E9%A1%B5%E9%9D%A2%E5%B9%B6%E6%98%BE%E7%A4%BA/"/>
+
+  
+  <link rel="stylesheet" href="/css/sanitize.css">
+  <link rel="stylesheet" href="/css/responsive.css">
+  <link rel="stylesheet" href="/css/highlight_monokai.css">
+  <link rel="stylesheet" href="/css/theme.css">
+  <link rel="stylesheet" href="/css/custom.css">
+  
+  
+  <link href="http://mygb.github.io/index.xml" rel="alternate" type="application/rss+xml" title="记录,思考" />
+  <link href="http://mygb.github.io/index.xml" rel="feed" type="application/rss+xml" title="记录,思考" />
+
+  
+  
+
+
+</head>
+
+
+
+<body>
+<div class="container">
+
+  
+  <header role="banner">
+    <div class="row gutters">
+      <div id="site-title" class="col span_6">
+        <h1><a href="http://mygb.github.io/">记录,思考</a></h1>
+        <h2>inner peace</h2>
+      </div>
+      <div id="social" class="col span_6">
+        <ul>
+          
+          
+          
+          
+        </ul>
+      </div>
+    </div>
+  </header>
+
+
+  
+  <main id="single" role="main">
+    <div class="article-header">
+      <h1>SpringMVC结合freemarker传值到页面并显示</h1>
+      <div class="meta">
+        Aug 13, 2014 &nbsp;
+        
+          #<a href="/tags/%E4%BC%A0%E5%80%BC%E6%98%BE%E7%A4%BA">传值,显示</a>&nbsp;
+        
+      </div>
+    </div>
+    <article>
+      <p>Controller要传值到页面上,可以使用<code>@ModelAttribute</code>这个注解来实现：</p>
+
+<pre><code>@RequestMapping(value = &quot;/&quot;, method = RequestMethod.GET)
+public String list(@ModelAttribute(&quot;a&quot;) ModelMap mm) {
+    List&lt;User&gt; users= userService.getAll();
+    if (Utils.isEmpty(attachments)) {
+        mm.addAttribute(&quot;users&quot;, &quot;&quot;);
+    } else {
+        mm.addAttribute(&quot;users&quot;, users);
+    }
+    return &quot;/index&quot;;
+}
+</code></pre>
+
+<p>这样就可以把查询出来的users这个List传递到页面了。Controller里边就是这样写的。</p>
+
+<p>那么问题来了，既然已经传递到index页面了，那index这个页面怎么取users呢，看下面:</p>
+
+<pre><code>&lt;#if a['users']??&gt;
+    &lt;span&gt;暂无数据&lt;/span&gt;
+&lt;#else&gt;
+    &lt;table&gt;
+        &lt;tr&gt;
+            &lt;th&gt;姓名&lt;/th&gt;
+            &lt;th&gt;年龄&lt;/th&gt;
+            &lt;th&gt;性别&lt;/th&gt;
+        &lt;/tr&gt;
+        &lt;#list a['users'] as user&gt;
+            &lt;tr&gt;
+                &lt;td&gt;${user.name}&lt;/td&gt;
+                &lt;td&gt;${user.age}&lt;/td&gt;
+                &lt;td&gt;${user.sex}&lt;/td&gt;
+            &lt;/tr&gt;
+        &lt;/#list&gt;
+    &lt;/table&gt;
+&lt;/#if&gt;
+</code></pre>
+
+<p>这里用的是freemarker中的标签语法，要是用其他标签也是一样的，都是遍历取值这么一个过程。
+需要说明的是：
+Controller方法参数中的</p>
+
+<pre><code>@ModelAttribute(&quot;info&quot;) ModelMap mm
+</code></pre>
+
+<p>Controller方法代码中的</p>
+
+<pre><code>mm.addAttribute(&quot;users&quot;,users)
+</code></pre>
+
+<p>index页面中的</p>
+
+<pre><code>&lt;#list info['users'] as user&gt;
+</code></pre>
+
+<p><code>info</code>为Map对象,<code>users</code>为key,所以取users的时候用<code>info['users']</code></p>
+
+      
+      
+      
+    </article>
+    
+
+
+  </main>
+  
+  <nav class="pagination-single">
+    
+      <span class="previous">&larr; <a href="http://mygb.github.io/post/shadowsocks%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE%E8%BF%87%E7%A8%8B%E8%AE%B0%E5%BD%95/" rel="prev">shadowsocks安装配置过程记录</a></span>
+    
+    
+      <span class="next"><a href="http://mygb.github.io/post/springmvc%E7%BB%93%E5%90%88freemarker%E9%A1%B5%E9%9D%A2%E4%BC%A0%E5%80%BC%E5%88%B0%E5%90%8E%E5%8F%B0%E5%90%8E%E5%8F%B0%E8%8E%B7%E5%8F%96%E9%A1%B5%E9%9D%A2%E4%BC%A0%E5%80%BC/" rel="next">SpringMVC结合freemarker页面传值到后台，后台获取页面传值</a> &rarr;</span>
+    
+  </nav>
+
+
+  
+  <footer role="contentinfo">
+    <div style="text-align:center;">
+      
+      
+    </div>
+  </footer>
+
+
+</div>
+
+<script src="/js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+
+
+</body>
+</html>
+

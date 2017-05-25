@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Git on 记录,思考</title>
+    <link>http://mygb.github.io/tags/git/</link>
+    <description>Recent content in Git on 记录,思考</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh_CN</language>
+    <lastBuildDate>Mon, 09 Mar 2015 16:31:31 +0800</lastBuildDate>
+    
+	<atom:link href="http://mygb.github.io/tags/git/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>git常使用的命令</title>
+      <link>http://mygb.github.io/post/git%E5%B8%B8%E4%BD%BF%E7%94%A8%E7%9A%84%E5%91%BD%E4%BB%A4/</link>
+      <pubDate>Mon, 09 Mar 2015 16:31:31 +0800</pubDate>
+      
+      <guid>http://mygb.github.io/post/git%E5%B8%B8%E4%BD%BF%E7%94%A8%E7%9A%84%E5%91%BD%E4%BB%A4/</guid>
+      <description>从远程下载项目到本地：
+ git clone 项目地址  初始化一个本地的git仓库：
+ git init  推送本地项目到一个新的远程仓库：
+ git remote add origin 项目地址 (如果“origin”不写默认为“origin”)  查看本地更改：
+ git status  查看本次具体的修改内容：
+ git diff 或 git diff 具体文件的路径  添加改动到暂存区：
+ git add . 或者 git add -A 或者 git add 文件路径  把暂存区的改动提交到本地仓库：
+ git commit -m &amp;quot;本次提交说明&amp;quot;  把本地仓库的改动推送到远程仓库：
+ git push 或者 git push origin 分支名  从远程仓库更新代码到本地仓库：
+ git pull 或者 git pull origin 分支名  查看分支：</description>
+    </item>
+    
+  </channel>
+</rss>

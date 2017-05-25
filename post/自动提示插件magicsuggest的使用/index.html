@@ -1,0 +1,159 @@
+
+<!DOCTYPE html>
+<html lang="zh_CN">
+<head>
+
+  
+  <meta charset="UTF-8">
+  <title>
+    自动提示插件magicSuggest的使用 | 记录,思考
+  </title>
+
+
+  
+  <meta name="viewport" content="width=device-width,user-scalable=no,maximum-scale=1,initial-scale=1">
+
+  
+  <link rel="canonical" href="http://mygb.github.io/post/%E8%87%AA%E5%8A%A8%E6%8F%90%E7%A4%BA%E6%8F%92%E4%BB%B6magicsuggest%E7%9A%84%E4%BD%BF%E7%94%A8/"/>
+
+  
+  <link rel="stylesheet" href="/css/sanitize.css">
+  <link rel="stylesheet" href="/css/responsive.css">
+  <link rel="stylesheet" href="/css/highlight_monokai.css">
+  <link rel="stylesheet" href="/css/theme.css">
+  <link rel="stylesheet" href="/css/custom.css">
+  
+  
+  <link href="http://mygb.github.io/index.xml" rel="alternate" type="application/rss+xml" title="记录,思考" />
+  <link href="http://mygb.github.io/index.xml" rel="feed" type="application/rss+xml" title="记录,思考" />
+
+  
+  
+
+
+</head>
+
+
+
+<body>
+<div class="container">
+
+  
+  <header role="banner">
+    <div class="row gutters">
+      <div id="site-title" class="col span_6">
+        <h1><a href="http://mygb.github.io/">记录,思考</a></h1>
+        <h2>inner peace</h2>
+      </div>
+      <div id="social" class="col span_6">
+        <ul>
+          
+          
+          
+          
+        </ul>
+      </div>
+    </div>
+  </header>
+
+
+  
+  <main id="single" role="main">
+    <div class="article-header">
+      <h1>自动提示插件magicSuggest的使用</h1>
+      <div class="meta">
+        Jun 3, 2015 &nbsp;
+        
+          #<a href="/tags/magicsuggest">magicSuggest</a>&nbsp;
+        
+      </div>
+    </div>
+    <article>
+      
+
+<blockquote>
+<p>magicSuggest是一个自动提示插件且支持多选，下面记录了具体的使用过程(bootstrap)：</p>
+</blockquote>
+
+<h5 id="1-首先在页面中引入magicsuggest的样式文件和js文件-需要bootstrap和jquery库">1. 首先在页面中引入magicSuggest的样式文件和js文件(需要bootstrap和JQuery库)：</h5>
+
+<pre><code>&lt;link href=&quot;/assets/css/magicsuggest-min.css&quot; rel=&quot;stylesheet&quot;&gt;
+&lt;script src=&quot;/assets/js/magicsuggest-min.js&quot;&gt;&lt;/script&gt;
+</code></pre>
+
+<h5 id="2-页面中添加一个div">2. 页面中添加一个div：</h5>
+
+<pre><code>&lt;div id=&quot;ms1&quot; class=&quot;form-control&quot; required&gt;&lt;/div&gt;
+</code></pre>
+
+<h5 id="3-再为magicsuggest初始化">3. 再为magicSuggest初始化：</h5>
+
+<pre><code>var  ms1 = $('#ms1').magicSuggest({
+    value:['A'],
+    placeholder:'请选择',
+    data:'/message/find',
+    queryParam:'str',
+});
+</code></pre>
+
+<p>解释一下：</p>
+
+<p>（1）<code>value</code>是出现在提示框中的值</p>
+
+<p>（2）<code>placeholder</code>是提示，就是显示在文本框中的提示内容，类似于很多网页中的“请在此框中输入xx”</p>
+
+<p>（3）<code>data</code>是数据源，上面写的数据源是去请求一个url，这个url返回的是json数据，如果不用根据输入内容去动态获取，写死就行了，就像value那样</p>
+
+<p>（4）<code>queryParam</code>是插件根据输入的内容，然后把这个内容传到后台的名称。假如在提示框中输入了a，<code>queryParam</code>是str，数据源是一个url请求<code>(data:'/message/find')</code>，那么插件会自动把这个参数传递到后台（处不处理是自己的事），完整的链接是<code>/message/find?str=a</code>，后台可以这样获取：<code>request.getParameter(&quot;str&quot;);</code>。就是这样。</p>
+
+<h5 id="4-如果要获取提示框中的值">4. 如果要获取提示框中的值：</h5>
+
+<pre><code>$(ms1).on(
+  'selectionchange', function(e, cb, s){
+    var str = cb.getValue();
+    alert('提示框中的值为：'+str);
+  });
+</code></pre>
+
+<p>上面的方法是在提示列表中选了一项，然后提示框中的值发生改变了触发的；如果获取到提示框中有多个值，会用,(逗号)分开。</p>
+
+<h5 id="5-更多有关magicsuggest属性请参考-官方文档-http-www-nicolasbize-com-magicsuggest-doc-html">5. 更多有关MagicSuggest属性请参考<a href="http://www.nicolasbize.com/magicsuggest/doc.html">官方文档</a></h5>
+
+      
+      
+      
+    </article>
+    
+
+
+  </main>
+  
+  <nav class="pagination-single">
+    
+      <span class="previous">&larr; <a href="http://mygb.github.io/post/jquery.lazyload%E7%9A%84%E4%BD%BF%E7%94%A8/" rel="prev">JQuery.lazyload的使用</a></span>
+    
+    
+      <span class="next"><a href="http://mygb.github.io/post/springmvc%E7%BB%93%E5%90%88ajax%E4%B8%8A%E4%BC%A0%E6%96%87%E4%BB%B6/" rel="next">SpringMVC结合Ajax上传文件</a> &rarr;</span>
+    
+  </nav>
+
+
+  
+  <footer role="contentinfo">
+    <div style="text-align:center;">
+      
+      
+    </div>
+  </footer>
+
+
+</div>
+
+<script src="/js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+
+
+</body>
+</html>
+

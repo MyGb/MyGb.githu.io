@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Ajax上传 on 记录,思考</title>
+    <link>http://mygb.github.io/tags/ajax%E4%B8%8A%E4%BC%A0/</link>
+    <description>Recent content in Ajax上传 on 记录,思考</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh_CN</language>
+    <lastBuildDate>Sun, 26 Jul 2015 15:31:06 +0800</lastBuildDate>
+    
+	<atom:link href="http://mygb.github.io/tags/ajax%E4%B8%8A%E4%BC%A0/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>SpringMVC结合Ajax上传文件</title>
+      <link>http://mygb.github.io/post/springmvc%E7%BB%93%E5%90%88ajax%E4%B8%8A%E4%BC%A0%E6%96%87%E4%BB%B6/</link>
+      <pubDate>Sun, 26 Jul 2015 15:31:06 +0800</pubDate>
+      
+      <guid>http://mygb.github.io/post/springmvc%E7%BB%93%E5%90%88ajax%E4%B8%8A%E4%BC%A0%E6%96%87%E4%BB%B6/</guid>
+      <description>在使用Ajax提交表单的时候可能会遇到上传文件的情况，可以使用ajaxFileUpload这个JQuery插件来搞定文件的上传。
+HTML：
+&amp;lt;input type=&amp;quot;file&amp;quot; id=&amp;quot;file&amp;quot; name=&amp;quot;file&amp;quot; class=&amp;quot;form-control&amp;quot; onchange=&amp;quot;preImg(this.id,&#39;imgPre&#39;);&amp;quot;/&amp;gt; &amp;lt;input type=&amp;quot;button&amp;quot; value=&amp;quot;确认上传&amp;quot; onclick=&amp;quot;ajaxFileUpload()&amp;quot;/&amp;gt;  JS：
+/* 图片上传 */ function ajaxFileUpload() { // 执行上传文件操作的函数 $.ajaxFileUpload({ url : path + &#39;/admin/item/fileUpload&#39;, secureuri : false, // 是否启用安全提交,默认为false fileElementId : &#39;file&#39;, // 文件选择框的id属性 dataType : &#39;text&#39;, // 服务器返回的格式,可以是json或xml等 success : function(data, status) { // 服务器响应成功时的处理函数 if (data.code == 0) { $(&amp;quot;#fileInfo&amp;quot;).html(&amp;quot;上传成功.&amp;quot;); } else { $(&amp;quot;#fileInfo&amp;quot;).html(&amp;quot;上传失败.&amp;quot;); } }, error : function(data, status, e) { $(&amp;quot;#fileInfo&amp;quot;).html(&amp;quot;上传失败，请重试.&amp;quot;); } }); }  后台保存：</description>
+    </item>
+    
+  </channel>
+</rss>

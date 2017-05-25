@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Lazyload on 记录,思考</title>
+    <link>http://mygb.github.io/tags/lazyload/</link>
+    <description>Recent content in Lazyload on 记录,思考</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh_CN</language>
+    <lastBuildDate>Thu, 30 Apr 2015 15:34:03 +0800</lastBuildDate>
+    
+	<atom:link href="http://mygb.github.io/tags/lazyload/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>JQuery.lazyload的使用</title>
+      <link>http://mygb.github.io/post/jquery.lazyload%E7%9A%84%E4%BD%BF%E7%94%A8/</link>
+      <pubDate>Thu, 30 Apr 2015 15:34:03 +0800</pubDate>
+      
+      <guid>http://mygb.github.io/post/jquery.lazyload%E7%9A%84%E4%BD%BF%E7%94%A8/</guid>
+      <description>JQuery.lazyload是一款用于图片延迟加载的插件；使用方法如下：
+①引入jquery.lazyload.min.js文件：
+&amp;lt;script src=&amp;quot;jquery.lazyload.min.js&amp;quot; type=&amp;quot;text/javascript&amp;quot;&amp;gt;&amp;lt;/script&amp;gt;  ②使用jquery.lazyload插件：在需要延迟加载图片的img标签中这样写
+&amp;lt;img class=&amp;quot;lazy&amp;quot; data-original=&amp;quot;nor.gif&amp;quot; src=&amp;quot;lazy.gif&amp;quot; /&amp;gt;  其中class属性根据情况自己定义；
+data-original属性是要加载的图片的全路径，此属性中的值可根据情况用javascript来改变,如在页面加载的时候发起Ajax请求后得到图片地址，再把获取到的图片地址用javascript的方式设置给该属性；
+src是还没加载出图片的时候预设显示的图片，也可不做设置，但最好指定img的宽高，以免排版布局显示错乱。</description>
+    </item>
+    
+  </channel>
+</rss>

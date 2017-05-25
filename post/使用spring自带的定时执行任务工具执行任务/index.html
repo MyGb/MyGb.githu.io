@@ -1,0 +1,155 @@
+
+<!DOCTYPE html>
+<html lang="zh_CN">
+<head>
+
+  
+  <meta charset="UTF-8">
+  <title>
+    使用Spring自带的定时执行任务工具执行任务 | 记录,思考
+  </title>
+
+
+  
+  <meta name="viewport" content="width=device-width,user-scalable=no,maximum-scale=1,initial-scale=1">
+
+  
+  <link rel="canonical" href="http://mygb.github.io/post/%E4%BD%BF%E7%94%A8spring%E8%87%AA%E5%B8%A6%E7%9A%84%E5%AE%9A%E6%97%B6%E6%89%A7%E8%A1%8C%E4%BB%BB%E5%8A%A1%E5%B7%A5%E5%85%B7%E6%89%A7%E8%A1%8C%E4%BB%BB%E5%8A%A1/"/>
+
+  
+  <link rel="stylesheet" href="/css/sanitize.css">
+  <link rel="stylesheet" href="/css/responsive.css">
+  <link rel="stylesheet" href="/css/highlight_monokai.css">
+  <link rel="stylesheet" href="/css/theme.css">
+  <link rel="stylesheet" href="/css/custom.css">
+  
+  
+  <link href="http://mygb.github.io/index.xml" rel="alternate" type="application/rss+xml" title="记录,思考" />
+  <link href="http://mygb.github.io/index.xml" rel="feed" type="application/rss+xml" title="记录,思考" />
+
+  
+  
+
+
+</head>
+
+
+
+<body>
+<div class="container">
+
+  
+  <header role="banner">
+    <div class="row gutters">
+      <div id="site-title" class="col span_6">
+        <h1><a href="http://mygb.github.io/">记录,思考</a></h1>
+        <h2>inner peace</h2>
+      </div>
+      <div id="social" class="col span_6">
+        <ul>
+          
+          
+          
+          
+        </ul>
+      </div>
+    </div>
+  </header>
+
+
+  
+  <main id="single" role="main">
+    <div class="article-header">
+      <h1>使用Spring自带的定时执行任务工具执行任务</h1>
+      <div class="meta">
+        Jan 10, 2015 &nbsp;
+        
+          #<a href="/tags/spring%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1">Spring定时任务</a>&nbsp;
+        
+      </div>
+    </div>
+    <article>
+      
+
+<h5 id="首先写一个任务类">首先写一个任务类：</h5>
+
+<pre><code>@Component(&quot;taskJob&quot;)
+public class DeleteTableRecord {
+    @Scheduled(cron = &quot;0 0 3 * * ?&quot;)
+    public void job() {
+        System.out.println(&quot;正在执行任务....&quot;);
+        //要执行的任务
+        System.out.println(&quot;任务执行完成.&quot;);
+    }
+}
+</code></pre>
+
+<pre><code>@Scheduled(cron = &quot;0 0 3 * * ?&quot;) #表示在每天凌晨三点执行任务
+@Scheduled(cron = &quot;0 15 3 * * ?&quot;) #表示每天凌晨三点十五分执行任务
+</code></pre>
+
+<h5 id="在spring配置文件中加入如下配置">在Spring配置文件中加入如下配置:</h5>
+
+<pre><code>&lt;beans xmlns=&quot;http://www.springframework.org/schema/beans&quot;
+xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns:aop=&quot;http://www.springframework.org/schema/aop&quot;
+xmlns:tx=&quot;http://www.springframework.org/schema/tx&quot; xmlns:jdbc=&quot;http://www.springframework.org/schema/jdbc&quot;
+xmlns:context=&quot;http://www.springframework.org/schema/context&quot;
+xmlns:task=&quot;http://www.springframework.org/schema/task&quot;
+xsi:schemaLocation=&quot;http://www.springframework.org/schema/context
+      http://www.springframework.org/schema/context/spring-context-3.0.xsd
+      http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+      http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-3.0.xsd
+      http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
+      http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
+      http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task-3.0.xsd&quot;&gt;
+    &lt;context:annotation-config /&gt;  
+    &lt;!-- 扫描Task所在包--&gt;
+    &lt;context:component-scan base-package=&quot;com.mis.task&quot; /&gt;  
+    &lt;!-- Spring支持@Scheduled注解  --&gt;
+    &lt;task:annotation-driven scheduler=&quot;qbScheduler&quot; mode=&quot;proxy&quot; /&gt;
+    &lt;!--Task的配置--&gt;
+    &lt;task:scheduler id=&quot;qbScheduler&quot; pool-size=&quot;1&quot; /&gt;
+    &lt;bean&gt;
+    ...
+    &lt;/bean&gt;
+&lt;/beans&gt;
+</code></pre>
+
+      
+      
+      
+    </article>
+    
+
+
+  </main>
+  
+  <nav class="pagination-single">
+    
+      <span class="previous">&larr; <a href="http://mygb.github.io/post/freemarker%E9%83%A8%E5%88%86%E4%BD%BF%E7%94%A8%E8%AE%B0%E5%BD%95/" rel="prev">freemarker部分使用记录</a></span>
+    
+    
+      <span class="next"><a href="http://mygb.github.io/post/git%E5%B8%B8%E4%BD%BF%E7%94%A8%E7%9A%84%E5%91%BD%E4%BB%A4/" rel="next">git常使用的命令</a> &rarr;</span>
+    
+  </nav>
+
+
+  
+  <footer role="contentinfo">
+    <div style="text-align:center;">
+      
+      
+    </div>
+  </footer>
+
+
+</div>
+
+<script src="/js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+
+
+</body>
+</html>
+

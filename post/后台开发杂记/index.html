@@ -1,0 +1,186 @@
+
+<!DOCTYPE html>
+<html lang="zh_CN">
+<head>
+
+  
+  <meta charset="UTF-8">
+  <title>
+    后台开发杂记 | 记录,思考
+  </title>
+
+
+  
+  <meta name="viewport" content="width=device-width,user-scalable=no,maximum-scale=1,initial-scale=1">
+
+  
+  <link rel="canonical" href="http://mygb.github.io/post/%E5%90%8E%E5%8F%B0%E5%BC%80%E5%8F%91%E6%9D%82%E8%AE%B0/"/>
+
+  
+  <link rel="stylesheet" href="/css/sanitize.css">
+  <link rel="stylesheet" href="/css/responsive.css">
+  <link rel="stylesheet" href="/css/highlight_monokai.css">
+  <link rel="stylesheet" href="/css/theme.css">
+  <link rel="stylesheet" href="/css/custom.css">
+  
+  
+  <link href="http://mygb.github.io/index.xml" rel="alternate" type="application/rss+xml" title="记录,思考" />
+  <link href="http://mygb.github.io/index.xml" rel="feed" type="application/rss+xml" title="记录,思考" />
+
+  
+  
+
+
+</head>
+
+
+
+<body>
+<div class="container">
+
+  
+  <header role="banner">
+    <div class="row gutters">
+      <div id="site-title" class="col span_6">
+        <h1><a href="http://mygb.github.io/">记录,思考</a></h1>
+        <h2>inner peace</h2>
+      </div>
+      <div id="social" class="col span_6">
+        <ul>
+          
+          
+          
+          
+        </ul>
+      </div>
+    </div>
+  </header>
+
+
+  
+  <main id="single" role="main">
+    <div class="article-header">
+      <h1>后台开发杂记</h1>
+      <div class="meta">
+        May 6, 2014 &nbsp;
+        
+      </div>
+    </div>
+    <article>
+      
+
+<h5 id="关于在eclipse里创建的jsp文件中输入中文存储时报错的问题">关于在Eclipse里创建的jsp文件中输入中文存储时报错的问题.</h5>
+
+<p>解决方法:</p>
+
+<p>(1)把jsp文件中的pageEncoding的值改成中文的编码方式,如GBK,GB2312,GB18030.</p>
+
+<p>(2)在jsp文件页面右击，选preferences，在JSP Files中的Encoding项选Chinese,National Standard.</p>
+
+<p>使用第二种方式一劳永逸.</p>
+
+<h5 id="struts2中返回页面到一个iframe中显示的方法">struts2中返回页面到一个iframe中显示的方法</h5>
+
+<p>把struts2返回的页面显示到一个页面指定的iframe中，只需在form中指定target的值为需要显示页面的iframe的名字即可.</p>
+
+<pre><code>&lt;form action=&quot;actionName&quot; target=&quot;你要把页面显示到哪个iframe的名字&quot;&gt;
+....
+&lt;/form&gt;
+</code></pre>
+
+<h5 id="用ssh实现简单的删除操作时-id传入后台报空的问题">用SSH实现简单的删除操作时，id传入后台报空的问题。</h5>
+
+<p>页面删除链接的代码：</p>
+
+<pre><code>&lt;a href=&quot;UserinfoAction!delete?id=${s.UId}&quot;&gt;删除&lt;/a&gt;
+</code></pre>
+
+<p>改正过后的代码：</p>
+
+<pre><code>&lt;a href=&quot;UserinfoAction!delete?ui.UId=${s.UId}&quot;&gt;删除&lt;/a&gt;
+</code></pre>
+
+<p>其中UId是dao层实体中的一个属性，对应表中的主键.</p>
+
+<p>问题描述:id传入action时不能接收，无法创建对象。所以报空，用ui.UId=?解决.</p>
+
+<h5 id="myeclipse中建立的jsp文件中-base-href-basepath-可能会带来的问题">MyEclipse中建立的jsp文件中<code>&lt;base href=&quot;&lt;%=basePath%&gt;&quot;&gt;</code>可能会带来的问题.</h5>
+
+<pre><code>&lt;base href=&quot;&lt;%=basePath%&gt;&quot;&gt;
+</code></pre>
+
+<p>遇到的情况:通过struts2跳转到相应的jsp页面，上面的标签影响了原来jsp页面的样式和js的执行。
+解决方法:删除该标签.或是把该标签放在样式和js脚本的后边.</p>
+
+<h5 id="jsp页面跳转jsp页面时所传递的内容乱码的问题">jsp页面跳转jsp页面时所传递的内容乱码的问题.</h5>
+
+<p>遇到的问题:jsp页面跳转到另一jsp页面时所传递的内容乱码.</p>
+
+<p>解决方法:修改Tomcat的server.xml文件.</p>
+
+<p>要修改的内容:</p>
+
+<pre><code> &lt;Connector port=&quot;8080&quot; protocol=&quot;HTTP/1.1&quot;
+               connectionTimeout=&quot;20000&quot;
+               redirectPort=&quot;8443&quot; /&gt;
+</code></pre>
+
+<p>修改为:</p>
+
+<pre><code> &lt;Connector port=&quot;8080&quot; protocol=&quot;HTTP/1.1&quot;
+               connectionTimeout=&quot;20000&quot;
+               redirectPort=&quot;8443&quot;
+               URIEncoding=&quot;UTF-8&quot; /&gt;
+</code></pre>
+
+<h5 id="bean的成员变量">bean的成员变量</h5>
+
+<p>bean的成员变量首字母小写！！！长记性&hellip;..</p>
+
+<h5 id="启动tomcat时报caused-by-java-lang-classnotfoundexception-filterconfig异常">启动Tomcat时报Caused by: java.lang.ClassNotFoundException: FilterConfig异常</h5>
+
+<p>在MyEclipse中导入了一个web项目，没想到启动之后报异常，</p>
+
+<pre><code>NoClassDefFoundError: LFilterConfig......
+</code></pre>
+
+<p>解决，右键项目，选Properties，找到MyEclipse下的Targeted Runtimes,在右边的框中选择一个目标运行的服务器，如Apache Tomcat v7.0</p>
+
+<p>重新启动，ok</p>
+
+      
+      
+      
+    </article>
+    
+
+
+  </main>
+  
+  <nav class="pagination-single">
+    
+    
+      <span class="next"><a href="http://mygb.github.io/post/shadowsocks%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE%E8%BF%87%E7%A8%8B%E8%AE%B0%E5%BD%95/" rel="next">shadowsocks安装配置过程记录</a> &rarr;</span>
+    
+  </nav>
+
+
+  
+  <footer role="contentinfo">
+    <div style="text-align:center;">
+      
+      
+    </div>
+  </footer>
+
+
+</div>
+
+<script src="/js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+
+
+</body>
+</html>
+

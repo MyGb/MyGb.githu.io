@@ -1,0 +1,174 @@
+
+<!DOCTYPE html>
+<html lang="zh_CN">
+<head>
+
+  
+  <meta charset="UTF-8">
+  <title>
+    SpringMVC结合Ajax上传文件 | 记录,思考
+  </title>
+
+
+  
+  <meta name="viewport" content="width=device-width,user-scalable=no,maximum-scale=1,initial-scale=1">
+
+  
+  <link rel="canonical" href="http://mygb.github.io/post/springmvc%E7%BB%93%E5%90%88ajax%E4%B8%8A%E4%BC%A0%E6%96%87%E4%BB%B6/"/>
+
+  
+  <link rel="stylesheet" href="/css/sanitize.css">
+  <link rel="stylesheet" href="/css/responsive.css">
+  <link rel="stylesheet" href="/css/highlight_monokai.css">
+  <link rel="stylesheet" href="/css/theme.css">
+  <link rel="stylesheet" href="/css/custom.css">
+  
+  
+  <link href="http://mygb.github.io/index.xml" rel="alternate" type="application/rss+xml" title="记录,思考" />
+  <link href="http://mygb.github.io/index.xml" rel="feed" type="application/rss+xml" title="记录,思考" />
+
+  
+  
+
+
+</head>
+
+
+
+<body>
+<div class="container">
+
+  
+  <header role="banner">
+    <div class="row gutters">
+      <div id="site-title" class="col span_6">
+        <h1><a href="http://mygb.github.io/">记录,思考</a></h1>
+        <h2>inner peace</h2>
+      </div>
+      <div id="social" class="col span_6">
+        <ul>
+          
+          
+          
+          
+        </ul>
+      </div>
+    </div>
+  </header>
+
+
+  
+  <main id="single" role="main">
+    <div class="article-header">
+      <h1>SpringMVC结合Ajax上传文件</h1>
+      <div class="meta">
+        Jul 26, 2015 &nbsp;
+        
+          #<a href="/tags/ajax%E4%B8%8A%E4%BC%A0">Ajax上传</a>&nbsp;
+        
+      </div>
+    </div>
+    <article>
+      <p>在使用Ajax提交表单的时候可能会遇到上传文件的情况，可以使用<code>ajaxFileUpload</code>这个JQuery插件来搞定文件的上传。</p>
+
+<p>HTML：</p>
+
+<pre><code>&lt;input type=&quot;file&quot; id=&quot;file&quot; name=&quot;file&quot; class=&quot;form-control&quot; onchange=&quot;preImg(this.id,'imgPre');&quot;/&gt;
+&lt;input type=&quot;button&quot; value=&quot;确认上传&quot; onclick=&quot;ajaxFileUpload()&quot;/&gt;
+</code></pre>
+
+<p>JS：</p>
+
+<pre><code>/* 图片上传 */
+function ajaxFileUpload() {
+    // 执行上传文件操作的函数
+    $.ajaxFileUpload({
+        url : path + '/admin/item/fileUpload',
+        secureuri : false, // 是否启用安全提交,默认为false
+        fileElementId : 'file', // 文件选择框的id属性
+        dataType : 'text', // 服务器返回的格式,可以是json或xml等
+        success : function(data, status) { // 服务器响应成功时的处理函数
+            if (data.code == 0) { 
+                $(&quot;#fileInfo&quot;).html(&quot;上传成功.&quot;);
+            } else {
+                $(&quot;#fileInfo&quot;).html(&quot;上传失败.&quot;);
+            }
+        },
+        error : function(data, status, e) {
+            $(&quot;#fileInfo&quot;).html(&quot;上传失败，请重试.&quot;);
+        }
+    });
+}
+</code></pre>
+
+<p>后台保存：</p>
+
+<pre><code> @ResponseBody
+@RequestMapping(value = &quot;/item/fileUpload&quot;)
+public String addUser(@RequestParam(value = &quot;file&quot;) MultipartFile file, HttpServletRequest request,
+        HttpServletResponse response) throws IOException {
+        String message = null;
+        if (file.isEmpty()) {
+           //文件为空的处理
+        } else {
+            String format = DateUtil.format(DateUtil.getNow(), &quot;yyyyMMdd&quot;);
+            StringBuffer sb = new StringBuffer().append(File.separatorChar).append(&quot;fileUpload&quot;)
+                .append(File.separatorChar).append(&quot;images&quot;).append(File.separatorChar).append(&quot;item&quot;)
+                .append(File.separatorChar).append(format);
+            String path = sb.toString();
+            String realPath = request.getSession().getServletContext().getRealPath(path);
+
+            long random = RandomUtil.getRandom(100000, 999999);
+            String oriName = file.getOriginalFilename();
+            String suffix = oriName.substring(oriName.lastIndexOf(&quot;.&quot;));
+            String filename = DateUtil.getTime() + &quot;&quot; + random + suffix;
+            
+            try {
+                FileUtils.copyInputStreamToFile(file.getInputStream(), new File(realPath, filename));
+                message = &quot;0`&quot; + path + File.separatorChar + filename;
+            } catch (IOException e) {
+              
+            }
+        }
+        return message;
+}
+</code></pre>
+
+      
+      
+      
+    </article>
+    
+
+
+  </main>
+  
+  <nav class="pagination-single">
+    
+      <span class="previous">&larr; <a href="http://mygb.github.io/post/%E8%87%AA%E5%8A%A8%E6%8F%90%E7%A4%BA%E6%8F%92%E4%BB%B6magicsuggest%E7%9A%84%E4%BD%BF%E7%94%A8/" rel="prev">自动提示插件magicSuggest的使用</a></span>
+    
+    
+      <span class="next"><a href="http://mygb.github.io/post/django-%E4%BB%8E0%E5%88%B0helloworld/" rel="next">Django 从0到HelloWorld</a> &rarr;</span>
+    
+  </nav>
+
+
+  
+  <footer role="contentinfo">
+    <div style="text-align:center;">
+      
+      
+    </div>
+  </footer>
+
+
+</div>
+
+<script src="/js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+
+
+</body>
+</html>
+

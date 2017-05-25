@@ -1,0 +1,265 @@
+
+<!DOCTYPE html>
+<html lang="zh_CN">
+<head>
+
+  
+  <meta charset="UTF-8">
+  <title>
+    git常使用的命令 | 记录,思考
+  </title>
+
+
+  
+  <meta name="viewport" content="width=device-width,user-scalable=no,maximum-scale=1,initial-scale=1">
+
+  
+  <link rel="canonical" href="http://mygb.github.io/post/git%E5%B8%B8%E4%BD%BF%E7%94%A8%E7%9A%84%E5%91%BD%E4%BB%A4/"/>
+
+  
+  <link rel="stylesheet" href="/css/sanitize.css">
+  <link rel="stylesheet" href="/css/responsive.css">
+  <link rel="stylesheet" href="/css/highlight_monokai.css">
+  <link rel="stylesheet" href="/css/theme.css">
+  <link rel="stylesheet" href="/css/custom.css">
+  
+  
+  <link href="http://mygb.github.io/index.xml" rel="alternate" type="application/rss+xml" title="记录,思考" />
+  <link href="http://mygb.github.io/index.xml" rel="feed" type="application/rss+xml" title="记录,思考" />
+
+  
+  
+
+
+</head>
+
+
+
+<body>
+<div class="container">
+
+  
+  <header role="banner">
+    <div class="row gutters">
+      <div id="site-title" class="col span_6">
+        <h1><a href="http://mygb.github.io/">记录,思考</a></h1>
+        <h2>inner peace</h2>
+      </div>
+      <div id="social" class="col span_6">
+        <ul>
+          
+          
+          
+          
+        </ul>
+      </div>
+    </div>
+  </header>
+
+
+  
+  <main id="single" role="main">
+    <div class="article-header">
+      <h1>git常使用的命令</h1>
+      <div class="meta">
+        Mar 9, 2015 &nbsp;
+        
+          #<a href="/tags/git">git</a>&nbsp;
+        
+      </div>
+    </div>
+    <article>
+      <p>从远程下载项目到本地：</p>
+
+<pre><code>    git clone 项目地址
+</code></pre>
+
+<p>初始化一个本地的git仓库：</p>
+
+<pre><code>    git init
+</code></pre>
+
+<p>推送本地项目到一个新的远程仓库：</p>
+
+<pre><code>    git remote add origin 项目地址 (如果“origin”不写默认为“origin”)
+</code></pre>
+
+<p>查看本地更改：</p>
+
+<pre><code>    git status
+</code></pre>
+
+<p>查看本次具体的修改内容：</p>
+
+<pre><code>    git diff  或 git diff 具体文件的路径
+</code></pre>
+
+<p>添加改动到暂存区：</p>
+
+<pre><code>    git add .  或者  git add -A  或者 git add 文件路径
+</code></pre>
+
+<p>把暂存区的改动提交到本地仓库：</p>
+
+<pre><code>    git commit -m &quot;本次提交说明&quot;
+</code></pre>
+
+<p>把本地仓库的改动推送到远程仓库：</p>
+
+<pre><code>    git push 或者 git push origin 分支名
+</code></pre>
+
+<p>从远程仓库更新代码到本地仓库：</p>
+
+<pre><code>    git pull 或者 git pull origin 分支名
+</code></pre>
+
+<p>查看分支：</p>
+
+<pre><code>git branch
+注：前面有*的就是现在所在的分支。
+</code></pre>
+
+<p>新建一个新的分支：</p>
+
+<pre><code>    git branch 分支名
+</code></pre>
+
+<p>切换到某个分支 ：</p>
+
+<pre><code>    git checkout 分支名
+</code></pre>
+
+<p>新建一个分支并且切换到该分支上，如果分支已经存在直接切换过去：</p>
+
+<pre><code>    git checkout -b 分支名
+</code></pre>
+
+<p>删除一个存在的分支：</p>
+
+<pre><code>git branch -d 分支名 或者 git branch -D 分支名   (前者如果有其它需要合并的会提示并失败，后者为强制删除)
+注：若有未合并到HEAD(当前)的提交，则不能删除分支。如果要强制删除未提交的分支，请添加-D选项执行。
+</code></pre>
+
+<p>修改分支的名称：</p>
+
+<pre><code>    git branch -m 老分支名 新分支名
+</code></pre>
+
+<p>合并分支：</p>
+
+<pre><code>    git merge 分支名
+</code></pre>
+
+<p>查看提交记录：</p>
+
+<pre><code>    git log
+</code></pre>
+
+<p>如果要查看具体的修改记录：</p>
+
+<pre><code>    git show commit标识
+</code></pre>
+
+<p>取消(HEAD)当前更改(撤销add commit操作，并且本地代码还原)：</p>
+
+<pre><code>    git reset --hard HEAD~  或  git reset --hard
+</code></pre>
+
+<p>当发现reset错误的时候，想要还原reset之前的状态：</p>
+
+<pre><code>git reset --hard ORIG_HEAD
+注：前提是reset之前的状态已经commit过的，不然也是悲剧
+</code></pre>
+
+<p>回滚代码到某个记录：</p>
+
+<pre><code>git revert commit标识码
+注：git revert是用一次新的commit来回滚之前的commit，git reset是直接删除指定的commit
+通俗的讲就是如果用git log看会有区别，revert会在分支上留下一个节点，reset是直接把节点删除，看不到记录
+</code></pre>
+
+<p>还原正在修改，但是还没添加到暂存区的文件：</p>
+
+<pre><code>    git checkout -- 文件路径
+</code></pre>
+
+<p>场景: 你偶然把 application.log 加到代码库里了，现在每次你运行应用，Git 都会报告在 application.log 里有未提交的修改。你把 *.login 放到了 .gitignore 文件里，可文件还是在代码库里 — 你怎么才能告诉 Git “撤销” 对这个文件的追踪呢？
+方法:</p>
+
+<pre><code>git rm --cached application.log
+</code></pre>
+
+<p>原理: 虽然 .gitignore 会阻止 Git 追踪文件的修改，甚至不关注文件是否存在，但这只是针对那些以前从来没有追踪过的文件。一旦有个文件被加入并提交了，Git 就会持续关注该文件的改变。类似地，如果你利用 git add -f 来强制或覆盖了 .gitignore， Git 还会持续追踪改变的情况。之后你就不必用-f  来添加这个文件了。如果你希望从 Git 的追踪对象中删除那个本应忽略的文件， git rm &ndash;cached 会从追踪对象中删除它，但让文件在磁盘上保持原封不动。因为现在它已经被忽略了，你在  git status 里就不会再看见这个文件，也不会再偶然提交该文件的修改了。</p>
+
+<p>假如在A分支上做了一个git commit操作，但是后面发现这个操作应该在B分支上进行，那么需要把A那边的commit操作拿到B这边来：
+    git cherry-pick commit标识号
+    注：进行这个操作应该切换到B分支上</p>
+
+<p>提交代码之前先更新，然后再提交，如果更新的时候提示有冲突更新不下来的情况，就把本地的修改先加入到暂存区，也就是进行git add操作，再执行更新操作，完了确定没有冲突再提交代码。如果有冲突，在代码或文件中会出现像下面这种情况：</p>
+
+<pre><code>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD
+这里是自己这边在文件中更改的地方
+=======
+这里是服务器上同步下来的代码
+&gt;&gt;&gt;&gt;&gt;&gt;&gt; ada24d
+</code></pre>
+
+<p>这个时候就需要根据情况自己解决冲突了。</p>
+
+<p>还原文件:</p>
+
+<pre><code>git checkout . &amp;&amp; git clean -x
+or 
+git reset --hard 
+git clean -xdf 
+</code></pre>
+
+<p>保存当前分支的状态:</p>
+
+<pre><code>git add . &amp;&amp; git stash
+</code></pre>
+
+<p>恢复当前分支之前保存的状态:</p>
+
+<pre><code>git stash pop
+</code></pre>
+
+      
+      
+      
+    </article>
+    
+
+
+  </main>
+  
+  <nav class="pagination-single">
+    
+      <span class="previous">&larr; <a href="http://mygb.github.io/post/%E4%BD%BF%E7%94%A8spring%E8%87%AA%E5%B8%A6%E7%9A%84%E5%AE%9A%E6%97%B6%E6%89%A7%E8%A1%8C%E4%BB%BB%E5%8A%A1%E5%B7%A5%E5%85%B7%E6%89%A7%E8%A1%8C%E4%BB%BB%E5%8A%A1/" rel="prev">使用Spring自带的定时执行任务工具执行任务</a></span>
+    
+    
+      <span class="next"><a href="http://mygb.github.io/post/jquery.lazyload%E7%9A%84%E4%BD%BF%E7%94%A8/" rel="next">JQuery.lazyload的使用</a> &rarr;</span>
+    
+  </nav>
+
+
+  
+  <footer role="contentinfo">
+    <div style="text-align:center;">
+      
+      
+    </div>
+  </footer>
+
+
+</div>
+
+<script src="/js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+
+
+</body>
+</html>
+

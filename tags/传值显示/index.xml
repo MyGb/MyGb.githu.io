@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>传值显示 on 记录,思考</title>
+    <link>http://mygb.github.io/tags/%E4%BC%A0%E5%80%BC%E6%98%BE%E7%A4%BA/</link>
+    <description>Recent content in 传值显示 on 记录,思考</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh_CN</language>
+    <lastBuildDate>Wed, 13 Aug 2014 15:15:45 +0800</lastBuildDate>
+    
+	<atom:link href="http://mygb.github.io/tags/%E4%BC%A0%E5%80%BC%E6%98%BE%E7%A4%BA/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>SpringMVC结合freemarker传值到页面并显示</title>
+      <link>http://mygb.github.io/post/springmvc%E7%BB%93%E5%90%88freemarker%E4%BC%A0%E5%80%BC%E5%88%B0%E9%A1%B5%E9%9D%A2%E5%B9%B6%E6%98%BE%E7%A4%BA/</link>
+      <pubDate>Wed, 13 Aug 2014 15:15:45 +0800</pubDate>
+      
+      <guid>http://mygb.github.io/post/springmvc%E7%BB%93%E5%90%88freemarker%E4%BC%A0%E5%80%BC%E5%88%B0%E9%A1%B5%E9%9D%A2%E5%B9%B6%E6%98%BE%E7%A4%BA/</guid>
+      <description>Controller要传值到页面上,可以使用@ModelAttribute这个注解来实现：
+@RequestMapping(value = &amp;quot;/&amp;quot;, method = RequestMethod.GET) public String list(@ModelAttribute(&amp;quot;a&amp;quot;) ModelMap mm) { List&amp;lt;User&amp;gt; users= userService.getAll(); if (Utils.isEmpty(attachments)) { mm.addAttribute(&amp;quot;users&amp;quot;, &amp;quot;&amp;quot;); } else { mm.addAttribute(&amp;quot;users&amp;quot;, users); } return &amp;quot;/index&amp;quot;; }  这样就可以把查询出来的users这个List传递到页面了。Controller里边就是这样写的。
+那么问题来了，既然已经传递到index页面了，那index这个页面怎么取users呢，看下面:
+&amp;lt;#if a[&#39;users&#39;]??&amp;gt; &amp;lt;span&amp;gt;暂无数据&amp;lt;/span&amp;gt; &amp;lt;#else&amp;gt; &amp;lt;table&amp;gt; &amp;lt;tr&amp;gt; &amp;lt;th&amp;gt;姓名&amp;lt;/th&amp;gt; &amp;lt;th&amp;gt;年龄&amp;lt;/th&amp;gt; &amp;lt;th&amp;gt;性别&amp;lt;/th&amp;gt; &amp;lt;/tr&amp;gt; &amp;lt;#list a[&#39;users&#39;] as user&amp;gt; &amp;lt;tr&amp;gt; &amp;lt;td&amp;gt;${user.name}&amp;lt;/td&amp;gt; &amp;lt;td&amp;gt;${user.age}&amp;lt;/td&amp;gt; &amp;lt;td&amp;gt;${user.sex}&amp;lt;/td&amp;gt; &amp;lt;/tr&amp;gt; &amp;lt;/#list&amp;gt; &amp;lt;/table&amp;gt; &amp;lt;/#if&amp;gt;  这里用的是freemarker中的标签语法，要是用其他标签也是一样的，都是遍历取值这么一个过程。 需要说明的是： Controller方法参数中的
+@ModelAttribute(&amp;quot;info&amp;quot;) ModelMap mm  Controller方法代码中的
+mm.addAttribute(&amp;quot;users&amp;quot;,users)  index页面中的
+&amp;lt;#list info[&#39;users&#39;] as user&amp;gt;  info为Map对象,users为key,所以取users的时候用info[&#39;users&#39;]</description>
+    </item>
+    
+  </channel>
+</rss>
