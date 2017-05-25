@@ -33,6 +33,19 @@ TIME_ZONE = &#39;Asia/Shanghai&#39;
     </item>
     
     <item>
+      <title>CAS算法的模拟实现</title>
+      <link>http://mygb.github.io/post/cas%E7%AE%97%E6%B3%95%E7%9A%84%E6%A8%A1%E6%8B%9F%E5%AE%9E%E7%8E%B0/</link>
+      <pubDate>Tue, 25 Aug 2015 17:37:09 +0800</pubDate>
+      
+      <guid>http://mygb.github.io/post/cas%E7%AE%97%E6%B3%95%E7%9A%84%E6%A8%A1%E6%8B%9F%E5%AE%9E%E7%8E%B0/</guid>
+      <description>CAS(Compare-And-Swap)算法是一种硬件对并发的支持，针对多处理器操作而设计的处理器中的一种指令，用于管理对共享数据的并发访问。它是一种无需加锁的非阻塞的算法实现。
+CAS算法中有三个关键的操作数：
+1. 需要读写的内存值 V 2. 进行比较的值 A 3. 拟写入的值 B  CAS算法逻辑为：当且仅当V的值等于A时，CAS算法通过原子方式(硬件级别的支持)用新值B来更新V的值，否则不做任何操作。
+下面是一个模拟的CAS算法代码实现：
+class CAS { private volatile int value; // 获取 public synchronized int get() { return value; } // 比较设置 public synchronized int compareAndSwap(int expectedValue, int newValue) { int oldValue = value; if (oldValue == expectedValue) { this.value = newValue; } return oldValue; } public synchronized boolean compareAndSet(int expectedValue, int newValue) { return expectedValue == compareAndSwap(expectedValue, newValue); } }  使用CAS：</description>
+    </item>
+    
+    <item>
       <title>SpringMVC结合Ajax上传文件</title>
       <link>http://mygb.github.io/post/springmvc%E7%BB%93%E5%90%88ajax%E4%B8%8A%E4%BC%A0%E6%96%87%E4%BB%B6/</link>
       <pubDate>Sun, 26 Jul 2015 15:31:06 +0800</pubDate>

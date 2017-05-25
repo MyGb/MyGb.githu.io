@@ -7,6 +7,11 @@
   </url>
   
   <url>
+    <loc>http://mygb.github.io/post/cas%E7%AE%97%E6%B3%95%E7%9A%84%E6%A8%A1%E6%8B%9F%E5%AE%9E%E7%8E%B0/</loc>
+    <lastmod>2015-08-25T17:37:09+08:00</lastmod>
+  </url>
+  
+  <url>
     <loc>http://mygb.github.io/post/springmvc%E7%BB%93%E5%90%88ajax%E4%B8%8A%E4%BC%A0%E6%96%87%E4%BB%B6/</loc>
     <lastmod>2015-07-26T15:31:06+08:00</lastmod>
   </url>
@@ -69,6 +74,12 @@
   <url>
     <loc>http://mygb.github.io/tags/ajax%E4%B8%8A%E4%BC%A0/</loc>
     <lastmod>2015-07-26T15:31:06+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://mygb.github.io/tags/cas%E7%AE%97%E6%B3%95/</loc>
+    <lastmod>2015-08-25T17:37:09+08:00</lastmod>
     <priority>0</priority>
   </url>
   
